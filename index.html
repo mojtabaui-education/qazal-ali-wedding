@@ -492,13 +492,18 @@ html.gated .snd{ opacity:0; pointer-events:none }
   position:fixed; inset:0; z-index:95;
   display:flex; align-items:center; justify-content:center;
   padding:24px;
-  background:rgba(242,235,223,.58);
-  -webkit-backdrop-filter:blur(7px) saturate(.9);
-  backdrop-filter:blur(7px) saturate(.9);
+  /* opaque: the cover stays hidden until the seal is opened */
+  background:radial-gradient(70% 46% at 50% 44%,#FBF7EE 0%,#F2EBDF 55%,#E6DAC7 100%);
   cursor:pointer;
   transition:opacity 1s var(--ease), visibility 1s;
 }
 .gate.open{ opacity:0; visibility:hidden; pointer-events:none }
+/* the same double hairline frame as the card, so the seal feels part of it */
+.gate::before,.gate::after{
+  content:''; position:absolute; pointer-events:none;
+  inset:18px; border:1px solid rgba(162,91,60,.38);
+}
+.gate::after{ inset:24px; border-color:rgba(140,127,108,.26) }
 .seal{
   display:flex; flex-direction:column; align-items:center; gap:14px;
   padding:0; border:0; background:none; cursor:pointer;
