@@ -1,0 +1,1190 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Qazal &amp; Ali — جشن عقد</title>
+<meta name="description" content="جشن عقد غزل عابدی و علی گرامی‌زاده — چهارشنبه ۶ آبان ۱۴۰۵، قم، عمارت ملل">
+<meta name="theme-color" content="#EFE7DA">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Qazal &amp; Ali — جشن عقد">
+<meta property="og:description" content="چهارشنبه ۶ آبان ۱۴۰۵ — ساعت ۷ تا ۱۱ — قم، عمارت ملل">
+<meta property="og:image" content="assets/hero.png">
+
+<link rel="preload" as="image" href="assets/hero.png">
+<link rel="preload" as="font" type="font/ttf" href="assets/fonts/IranNastaliq.ttf" crossorigin>
+
+<style>
+/* ─────────────────────────  FONTS  ───────────────────────── */
+@font-face{
+  font-family:'Gramophone';
+  src:url('assets/fonts/GramophoneFaNum-Clean.ttf') format('truetype');
+  font-weight:400; font-style:normal; font-display:swap;
+}
+@font-face{
+  font-family:'IranNastaliq';
+  src:url('assets/fonts/IranNastaliq.ttf') format('truetype');
+  font-weight:400; font-style:normal; font-display:swap;
+}
+@font-face{
+  font-family:'Gramophone Stone';
+  src:url('assets/fonts/GramophoneFaNum-Stone.ttf') format('truetype');
+  font-weight:400; font-style:normal; font-display:swap;
+}
+
+/* ─────────────────────────  TOKENS  ──────────────────────── */
+:root{
+  --paper:#EFE7DA;
+  --paper-2:#F7F2E9;
+  --night:#221E19;
+  --ink:#2B2621;
+  --ink-soft:#6E6254;
+  --line:#C9BCA8;
+  --accent:#A25B3C;
+  --accent-soft:#C98B62;
+  --ease:cubic-bezier(.22,.61,.36,1);
+
+  --cw:360px;   /* live card width                     — JS keeps in sync */
+  --u:360px;    /* layout unit = min(width, height/1.7) — JS keeps in sync */
+}
+
+*,*::before,*::after{ box-sizing:border-box }
+
+html{ background:var(--paper); -webkit-text-size-adjust:100% }
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:'Gramophone','Segoe UI',Tahoma,sans-serif;
+  font-size:16px;
+  line-height:1.9;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+
+/* aged-paper grain — above everything, ignores pointer */
+body::after{
+  content:'';
+  position:fixed; inset:0;
+  pointer-events:none;
+  z-index:90;
+  opacity:.05;
+  mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/></filter><rect width='180' height='180' filter='url(%23n)'/></svg>");
+}
+
+/* ═══════════════════════  THE STAGE  ═══════════════════════ */
+.stage{ position:relative; height:420svh }
+.sticky{
+  position:sticky; top:0;
+  height:100svh;
+  display:flex; align-items:center; justify-content:center;
+  overflow:hidden;
+}
+.scene{
+  perspective:2000px; perspective-origin:50% 50%;
+  display:flex; align-items:center; justify-content:center;
+  width:100%; height:100%;
+}
+.card{
+  position:relative;
+  width:100vw; height:100svh;          /* JS drives these */
+  transform-style:preserve-3d;
+  will-change:width,height,transform;
+  transition:box-shadow .7s var(--ease);
+}
+.card.is-card{
+  box-shadow:
+    0 1px 2px rgba(43,38,33,.10),
+    0 18px 40px -12px rgba(43,38,33,.28),
+    0 48px 88px -34px rgba(43,38,33,.30);
+}
+.face{
+  position:absolute; inset:0;
+  overflow:hidden;
+  border-radius:inherit;
+  backface-visibility:hidden;
+  -webkit-backface-visibility:hidden;
+  transform-style:preserve-3d;
+}
+.face--back{ transform:rotateY(180deg) }
+
+/* ══════════════  FRONT — the cover  ══════════════ */
+.face--front{
+  background:
+    radial-gradient(70% 42% at 50% 34%,#FBF7EE 0%,#F2EBDF 50%,#E6DAC7 100%);
+  display:flex; align-items:center; justify-content:center;
+  padding:calc(var(--u)*.085) calc(var(--u)*.08);
+}
+
+/* double hairline frame */
+.frame{
+  position:absolute; inset:calc(var(--u)*.04);
+  border:1px solid rgba(162,91,60,.42);
+  z-index:4; pointer-events:none;
+}
+.frame::before{
+  content:''; position:absolute; inset:calc(var(--u)*.012);
+  border:1px solid rgba(140,127,108,.30);
+}
+
+/* shared line-art strokes on the cover */
+.face--front svg .ink,.face--front svg .clay,.face--front svg .moss,.face--front svg .spark{
+  fill:none; stroke-linecap:round; stroke-linejoin:round;
+  vector-effect:non-scaling-stroke;
+}
+.face--front svg .ink  { stroke:#8A7C68; opacity:.8 }
+.face--front svg .clay { stroke:#B0663F; opacity:.8 }
+.face--front svg .moss { stroke:#75855E; opacity:.75 }
+.face--front svg .spark{ stroke:#C08050; opacity:.75 }
+.face--front svg .stem {
+  fill:none; stroke:#8A7C68; stroke-width:.85; stroke-linecap:round; opacity:.6;
+  vector-effect:non-scaling-stroke;
+}
+.face--front svg .dot{ fill:#B0663F; opacity:.6 }
+
+/* — lachak corners — */
+.lachak{
+  position:absolute; z-index:3; pointer-events:none; overflow:visible;
+  width:calc(var(--u)*.25); height:calc(var(--u)*.25);
+}
+.lachak.tl{ top:calc(var(--u)*.052); left:calc(var(--u)*.052) }
+.lachak.tr{ top:calc(var(--u)*.052); right:calc(var(--u)*.052); transform:scaleX(-1) }
+.lachak.bl{ bottom:calc(var(--u)*.052); left:calc(var(--u)*.052); transform:scaleY(-1) }
+.lachak.br{ bottom:calc(var(--u)*.052); right:calc(var(--u)*.052); transform:scale(-1,-1) }
+.lachak .lk-clay,.lachak .lk-ink{ fill:none; vector-effect:non-scaling-stroke; stroke-linejoin:round }
+.lachak .lk-clay{ stroke:#B0663F; stroke-width:.9; opacity:.75 }
+.lachak .lk-ink { stroke:#8A7C68; stroke-width:.7; opacity:.7 }
+.lachak .lk-dot { fill:#B0663F; opacity:.6 }
+
+/* — cover column — */
+.cover{
+  position:relative; z-index:2;
+  display:flex; flex-direction:column; align-items:center;
+  gap:calc(var(--u)*.03);
+  text-align:center;
+  color:var(--ink);
+  margin-top:calc(var(--u)*.03);
+}
+
+/* — the mehrab — */
+.mehrab{
+  position:relative;
+  width:calc(var(--u)*.50);
+  aspect-ratio:100/178;
+}
+.mehrab > svg{
+  position:absolute; inset:0; width:100%; height:100%;
+  overflow:visible; pointer-events:none;
+}
+.mehrab .art { z-index:0 }
+.mehrab .line{ z-index:2 }
+.mehrab .panel{ fill:#FBF8F1 }
+.mehrab .ha-ray  { fill:none; stroke:#B0663F; stroke-width:.8; opacity:.42; stroke-linecap:round; vector-effect:non-scaling-stroke }
+.mehrab .ha-ring { fill:none; stroke:#B0663F; stroke-width:.8; opacity:.45; vector-effect:non-scaling-stroke }
+.mehrab .ha-ring2{ fill:none; stroke:#8A7C68; stroke-width:.7; opacity:.28; stroke-dasharray:1 3.2; vector-effect:non-scaling-stroke }
+.mehrab .ar-out{ fill:none; stroke:#A25B3C; stroke-width:1.1; vector-effect:non-scaling-stroke }
+.mehrab .ar-in { fill:none; stroke:#8A7C68; stroke-width:.7; opacity:.75; vector-effect:non-scaling-stroke }
+.mehrab .fin   { fill:none; stroke:#A25B3C; stroke-width:.9; stroke-linecap:round; vector-effect:non-scaling-stroke }
+.mehrab .ro-ink{ fill:none; stroke:#8A7C68; stroke-width:.7; opacity:.8; vector-effect:non-scaling-stroke }
+.mehrab .ro-dot{ fill:#B0663F; opacity:.65 }
+
+.mehrab img{
+  position:absolute; z-index:1;
+  left:8%; width:84%;
+  top:calc(54 / 178 * 100%);
+  height:calc(119.3 / 178 * 100%);
+  object-fit:cover;
+  display:block;
+  filter:saturate(.94) contrast(1.02) sepia(.05);
+}
+.mehrab .tymp{
+  position:absolute; z-index:3;
+  left:0; right:0;
+  top:calc(35 / 178 * 100%);
+  margin:0;
+  font-family:'IranNastaliq','Gramophone',serif;
+  font-size:calc(var(--u)*.056);
+  line-height:1.4;
+  color:var(--ink);
+}
+
+/* — names, set in Nastaliq — */
+.cover-title{ display:flex; flex-direction:column; align-items:center }
+.nq{
+  font-family:'IranNastaliq','Gramophone',serif;
+  font-weight:400;
+  letter-spacing:0;                   /* never track Nastaliq */
+}
+.cover-title .who{
+  margin:0;
+  font-size:calc(var(--u)*.082);
+  line-height:1.32;
+  color:var(--accent);
+  white-space:nowrap;
+}
+.cover-title .and{
+  display:flex; align-items:center; gap:calc(var(--u)*.03);
+  margin:calc(var(--u)*-.012) 0;
+  font-size:calc(var(--u)*.05);
+  line-height:1.2;
+  color:var(--ink-soft);
+}
+.cover-title .and::before,.cover-title .and::after{
+  content:''; width:calc(var(--u)*.10); height:1px;
+  background:linear-gradient(to left,transparent,var(--line));
+}
+.cover-title .and::after{ background:linear-gradient(to right,transparent,var(--line)) }
+.cover-title .date{
+  margin:calc(var(--u)*.012) 0 0;
+  font-size:calc(var(--u)*.046);
+  line-height:1.4;
+  color:var(--ink);
+  word-spacing:.12em;
+  white-space:nowrap;
+}
+
+/* scroll hint */
+.hint{
+  position:absolute;
+  left:50%; bottom:calc(var(--u)*.012);
+  transform:translateX(-50%);
+  z-index:5; pointer-events:none;
+}
+.hint i{
+  display:block; width:1px; height:calc(var(--u)*.05);
+  background:linear-gradient(to bottom,rgba(110,98,84,.85),transparent);
+  animation:drip 2.6s var(--ease) infinite;
+  transform-origin:top;
+}
+@keyframes drip{
+  0%  { transform:scaleY(0); opacity:0 }
+  35% { transform:scaleY(1); opacity:1 }
+  100%{ transform:scaleY(1); opacity:0 }
+}
+
+/* ══════════════  BACK — the invitation  ══════════════ */
+.face--back{
+  background:var(--paper-2);
+  display:flex; align-items:center; justify-content:center;
+  padding:calc(var(--u)*.085);
+  overflow-y:auto;
+  -webkit-overflow-scrolling:touch;
+}
+.face--back::before{
+  content:'';
+  position:absolute; inset:calc(var(--u)*.042);
+  border:1px solid var(--line);
+  opacity:.5; pointer-events:none;
+}
+.back-decor{
+  position:absolute;
+  width:calc(var(--u)*.34); height:calc(var(--u)*.34);
+  pointer-events:none; overflow:visible;
+  opacity:.85;
+}
+.back-decor.a{ top:calc(var(--u)*.02); left:calc(var(--u)*.02) }
+.back-decor.b{ bottom:calc(var(--u)*.02); right:calc(var(--u)*.02) }
+.back-decor .ink,.back-decor .clay,.back-decor .moss,.back-decor .spark{
+  fill:none;
+  stroke-linecap:round; stroke-linejoin:round;
+  vector-effect:non-scaling-stroke;
+}
+.back-decor .ink  { stroke:#9B8D78; opacity:.7 }
+.back-decor .clay { stroke:#BC7B52; opacity:.72 }
+.back-decor .moss { stroke:#87956E; opacity:.7 }
+.back-decor .spark{ stroke:#C08050; opacity:.6 }
+.back-decor .stem {
+  fill:none; stroke:#9B8D78; stroke-width:0.8;
+  stroke-linecap:round; opacity:.55;
+  vector-effect:non-scaling-stroke;
+}
+.back-decor .dot  { fill:#BC7B52; stroke:none; opacity:.5 }
+
+.back-inner{
+  position:relative; z-index:1;
+  width:100%;
+  text-align:center;
+  display:flex; flex-direction:column; align-items:center;
+  gap:calc(var(--u)*.022);
+}
+.polaroid{
+  margin:0;
+  width:calc(var(--u)*.25);
+  padding:calc(var(--u)*.015) calc(var(--u)*.015) calc(var(--u)*.04);
+  background:#FCFAF5;
+  border:1px solid rgba(201,188,168,.5);
+  box-shadow:0 8px 20px -10px rgba(43,38,33,.45);
+  transform:rotate(-2.6deg);
+}
+.polaroid img{
+  display:block; width:100%; aspect-ratio:1/1;
+  object-fit:cover;
+  filter:sepia(.14) saturate(.92) contrast(1.02);
+}
+.k{
+  margin:0;
+  font-family:'IranNastaliq','Gramophone',serif;
+  font-size:calc(var(--u)*.048);
+  letter-spacing:0;
+  color:var(--accent);
+  line-height:1.5;
+}
+.back-names-fa{
+  font-family:'IranNastaliq','Gramophone',serif;
+  font-size:calc(var(--u)*.074);
+  line-height:1.3;
+  letter-spacing:0;
+  color:var(--accent);
+  margin:0;
+  white-space:nowrap;
+}
+.back-names-fa .and{
+  display:block;
+  font-size:.62em; line-height:1;
+  color:var(--ink-soft);
+  margin:-.12em 0 -.04em;
+}
+.back-names{
+  font-size:calc(var(--u)*.028);
+  line-height:1.2;
+  letter-spacing:.16em; text-indent:.16em;
+  color:var(--accent-soft);
+  margin:calc(var(--u)*-.012) 0 0;
+  white-space:nowrap;
+  direction:ltr;
+}
+.hair{
+  width:calc(var(--u)*.20); height:1px;
+  background:var(--line);
+  flex:none;
+}
+.when{
+  margin:0;
+  font-size:calc(var(--u)*.038);
+  line-height:1.85;
+  color:var(--ink);
+  letter-spacing:.01em; word-spacing:.12em;
+}
+.where{
+  margin:0;
+  font-size:calc(var(--u)*.032);
+  line-height:1.95;
+  color:var(--ink-soft);
+  letter-spacing:.01em; word-spacing:.1em;
+}
+.where b{ color:var(--ink); font-weight:400 }
+
+.links{
+  display:flex; justify-content:center;
+  gap:calc(var(--u)*.028);
+  flex-wrap:wrap;
+}
+.btn{
+  display:inline-flex; align-items:center;
+  gap:calc(var(--u)*.018);
+  padding:calc(var(--u)*.026) calc(var(--u)*.05);
+  border:1px solid var(--line);
+  color:var(--ink);
+  text-decoration:none;
+  font-size:calc(var(--u)*.030);
+  letter-spacing:.01em; word-spacing:.08em;
+  line-height:1;
+  white-space:nowrap;
+  background:rgba(255,255,255,.4);
+  transition:background .35s var(--ease),border-color .35s var(--ease),color .35s var(--ease),transform .35s var(--ease);
+}
+.btn svg{
+  width:calc(var(--u)*.036); height:calc(var(--u)*.036);
+  flex:none; opacity:.65; transition:opacity .35s;
+}
+.btn:hover,.btn:focus-visible{
+  background:var(--ink); border-color:var(--ink); color:var(--paper-2);
+  transform:translateY(-2px);
+}
+.btn:hover svg,.btn:focus-visible svg{ opacity:1 }
+
+.rsvp{
+  margin:0;
+  font-family:'IranNastaliq','Gramophone',serif;
+  font-size:calc(var(--u)*.044);
+  line-height:1.5;
+  color:var(--ink-soft);
+  letter-spacing:0;
+}
+
+/* ═══════════════════════  CLOSING BAND  ═══════════════════ */
+.foot{
+  position:relative; z-index:2;
+  background:var(--paper);
+  min-height:46svh;
+  display:flex; flex-direction:column;
+  align-items:center; justify-content:center;
+  gap:16px; padding:48px 24px; text-align:center;
+}
+.orn{ display:flex; align-items:center; justify-content:center; gap:14px }
+.orn::before,.orn::after{
+  content:''; height:1px; width:min(64px,14vw);
+  background:linear-gradient(to left,transparent,var(--line));
+}
+.orn::after{ background:linear-gradient(to right,transparent,var(--line)) }
+.orn span{ color:var(--accent-soft); font-size:11px }
+
+.foot .sig{
+  font-family:'IranNastaliq','Gramophone',serif;
+  font-size:30px; line-height:1.5; letter-spacing:0;
+  color:var(--accent);
+}
+.foot .lat{
+  font-family:Georgia,'Times New Roman',serif;
+  font-size:11px; letter-spacing:.3em; text-indent:.3em;
+  color:var(--ink-soft); direction:ltr;
+}
+.foot .reveal{
+  opacity:0; transform:translateY(14px);
+  transition:opacity .9s var(--ease),transform .9s var(--ease);
+}
+.foot .reveal.in{ opacity:1; transform:none }
+.foot .reveal.d1{ transition-delay:.1s }
+.foot .reveal.d2{ transition-delay:.2s }
+
+/* ═══════════════════════  MUSIC TOGGLE  ═══════════════════ */
+.snd{
+  position:fixed; z-index:100;
+  top:max(14px, env(safe-area-inset-top)); left:14px;
+  display:flex; align-items:center; gap:10px;
+  padding:0; border:0; background:none; cursor:pointer;
+  font:inherit; color:var(--ink);
+  -webkit-tap-highlight-color:transparent;
+}
+.snd .disc{
+  width:42px; height:42px; border-radius:50%;
+  display:grid; place-items:center;
+  border:1px solid rgba(162,91,60,.45);
+  background:rgba(251,248,241,.84);
+  -webkit-backdrop-filter:blur(6px); backdrop-filter:blur(6px);
+  box-shadow:0 6px 18px -10px rgba(43,38,33,.45);
+  transition:transform .35s var(--ease);
+}
+.snd:active .disc{ transform:scale(.94) }
+.snd .bars{ display:flex; align-items:flex-end; gap:2.5px; height:14px }
+.snd .bars i{
+  width:2px; height:3px; border-radius:1px;
+  background:var(--accent);
+  transition:height .4s var(--ease);
+}
+.snd.on .bars i{ animation:eq 1.1s ease-in-out infinite }
+.snd.on .bars i:nth-child(2){ animation-delay:-.35s }
+.snd.on .bars i:nth-child(3){ animation-delay:-.7s }
+.snd.on .bars i:nth-child(4){ animation-delay:-.15s }
+@keyframes eq{ 0%,100%{ height:3px } 50%{ height:14px } }
+
+@media (prefers-reduced-motion:reduce){
+  .snd.on .bars i{ animation:none; height:9px }
+}
+
+/* ═══════════════════════  OPENING SEAL  ═══════════════════ */
+html.gated, html.gated body{ overflow:hidden }
+html.gated .snd{ opacity:0; pointer-events:none }
+.snd{ transition:opacity .8s var(--ease) }
+.gate{
+  position:fixed; inset:0; z-index:95;
+  display:flex; align-items:center; justify-content:center;
+  padding:24px;
+  background:rgba(242,235,223,.58);
+  -webkit-backdrop-filter:blur(7px) saturate(.9);
+  backdrop-filter:blur(7px) saturate(.9);
+  cursor:pointer;
+  transition:opacity 1s var(--ease), visibility 1s;
+}
+.gate.open{ opacity:0; visibility:hidden; pointer-events:none }
+.seal{
+  display:flex; flex-direction:column; align-items:center; gap:14px;
+  padding:0; border:0; background:none; cursor:pointer;
+  font:inherit; color:var(--ink);
+  -webkit-tap-highlight-color:transparent;
+}
+.seal-disc{
+  position:relative;
+  width:124px; height:124px;
+  animation:breathe 3.4s ease-in-out infinite;
+  transition:transform .8s var(--ease);
+}
+.gate.open .seal-disc{ transform:scale(1.18); animation:none }
+.seal-disc svg{ position:absolute; inset:0; width:100%; height:100%; overflow:visible }
+.seal-disc .sl-face{ fill:#FBF8F1; stroke:#A25B3C; stroke-width:1.1; vector-effect:non-scaling-stroke }
+.seal-disc .sl-ring{ fill:none; stroke:#8A7C68; stroke-width:.75; opacity:.8; vector-effect:non-scaling-stroke }
+.seal-disc .sl-dot { fill:#B0663F; opacity:.7 }
+.seal-disc .sl-glow{ fill:none; stroke:#B0663F; stroke-width:.8; opacity:.35; vector-effect:non-scaling-stroke;
+  transform-origin:50px 50px; animation:ripple 3.4s ease-out infinite }
+.seal-mono{
+  position:absolute; inset:0;
+  display:grid; place-items:center;
+  font-family:'IranNastaliq','Gramophone',serif;
+  font-size:38px; line-height:1;
+  color:var(--accent);
+  padding-bottom:6px;
+}
+.seal-label{
+  font-family:'IranNastaliq','Gramophone',serif;
+  font-size:25px; line-height:1.5;
+  color:var(--ink);
+}
+.seal-sub{
+  margin-top:-10px;
+  font-size:12px; line-height:1.6;
+  color:var(--ink-soft);
+}
+@keyframes breathe{ 0%,100%{ transform:scale(1) } 50%{ transform:scale(1.035) } }
+@keyframes ripple { 0%{ transform:scale(1); opacity:.45 } 100%{ transform:scale(1.32); opacity:0 } }
+@media (prefers-reduced-motion:reduce){
+  .seal-disc, .seal-disc .sl-glow{ animation:none }
+}
+.no-js .gate{ display:none }
+
+/* ═════════════  fallbacks : no-js / reduced motion  ════════ */
+.no-js .stage{ height:auto }
+.no-js .sticky{ position:static; height:auto; display:block; overflow:visible }
+.no-js .scene{ display:block; perspective:none; height:auto }
+.no-js .card{ width:100%; height:100svh; transform:none; --u:340px }
+.no-js .face{ backface-visibility:visible; -webkit-backface-visibility:visible }
+.no-js .face--back{
+  position:relative; transform:none;
+  height:auto; min-height:100svh;
+}
+.no-js .hint{ display:none }
+.no-js .foot .reveal{ opacity:1; transform:none }
+
+@media (prefers-reduced-motion:reduce){
+  .hint i{ animation:none; opacity:.6 }
+  .foot .reveal{ transition-duration:.01ms }
+}
+</style>
+</head>
+
+<body class="no-js">
+
+<!-- shared botanical primitives -->
+<!-- engraved botanical primitives : outline only, hairline weight -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs>
+  <g id="lfA" fill="none">
+    <path d="M0 0C10-11 30-12 40 0 30 12 10 11 0 0Z" stroke-width="1"/>
+    <path d="M1 0Q20 1.2 39 0" stroke-width="0.62"/>
+    <path d="M8 .4L13-5.6M8 .4L13 6.2M16 .5L22-6.4M16 .5L22 6.8M24 .4L29-5.2M24 .4L29 5.6M30 .3L34-3.6M30 .3L34 4" stroke-width="0.45"/>
+  </g>
+  <g id="lfB" fill="none">
+    <path d="M0 0C7-8 21-8.5 28 0 21 8.5 7 8 0 0Z" stroke-width="0.92"/>
+    <path d="M1 0Q14 .9 27 0" stroke-width="0.58"/>
+    <path d="M7 .4L11-4M7 .4L11 4.6M14 .5L19-4.4M14 .5L19 5" stroke-width="0.42"/>
+  </g>
+  <g id="lfC" fill="none">
+    <path d="M0 0C4-4.7 12-5 16 0 12 5 4 4.7 0 0Z" stroke-width="0.85"/>
+    <path d="M1 0Q8 .5 15 0" stroke-width="0.5"/>
+  </g>
+  <g id="flw" fill="none">
+    <g stroke-width="0.8">
+      <path d="M0 0C-2.9-4.6-3.3-9.8 0-13.4 3.3-9.8 2.9-4.6 0 0Z"/>
+      <path d="M0 0C-2.9-4.6-3.3-9.8 0-13.4 3.3-9.8 2.9-4.6 0 0Z" transform="rotate(72)"/>
+      <path d="M0 0C-2.9-4.6-3.3-9.8 0-13.4 3.3-9.8 2.9-4.6 0 0Z" transform="rotate(144)"/>
+      <path d="M0 0C-2.9-4.6-3.3-9.8 0-13.4 3.3-9.8 2.9-4.6 0 0Z" transform="rotate(216)"/>
+      <path d="M0 0C-2.9-4.6-3.3-9.8 0-13.4 3.3-9.8 2.9-4.6 0 0Z" transform="rotate(288)"/>
+    </g>
+    <circle r="2.3" stroke-width="0.7"/>
+    <g stroke-width="0.55">
+      <path d="M0-3.4L0-5.6"/>
+      <path d="M0-3.4L0-5.6" transform="rotate(72)"/>
+      <path d="M0-3.4L0-5.6" transform="rotate(144)"/>
+      <path d="M0-3.4L0-5.6" transform="rotate(216)"/>
+      <path d="M0-3.4L0-5.6" transform="rotate(288)"/>
+    </g>
+  </g>
+  <g id="star" fill="none">
+    <path d="M0-11C1.7-3.7 3.7-1.7 11 0 3.7 1.7 1.7 3.7 0 11-1.7 3.7-3.7 1.7-11 0-3.7-1.7-1.7-3.7 0-11Z" stroke-width="0.75"/>
+  </g>
+</defs></svg>
+
+<!-- ══════════  cover → shrinks into a card → flips over  ══════════ -->
+<section class="stage" id="stage" aria-label="دعوت‌نامه">
+  <div class="sticky" id="sticky">
+    <div class="scene">
+      <article class="card" id="card">
+
+        <!-- ─────────  FRONT  ───────── -->
+        <div class="face face--front">
+          <span class="frame" aria-hidden="true"></span>
+          <svg class="lachak tl" viewBox="0 0 100 100" aria-hidden="true" focusable="false">
+            <path class="lk-clay" d="M82 0L82.1 1.4L82.5 2.9L83 4.4L83.8 5.9L84.7 7.4L85.7 9L86.7 10.6L87.8 12.3L88.7 14.1L89.6 15.8L90.3 17.6L90.8 19.3L91.1 21L91.1 22.7L90.8 24.3L90.2 25.9L89.4 27.3L88.3 28.7L87 30L85.5 31.1L83.9 32.2L82.2 33.2L80.4 34.1L78.7 35L77 35.9L75.5 36.8L74.1 37.7L72.9 38.7L71.8 39.8L71 41L70.4 42.3L70 43.7L69.7 45.3L69.6 47L69.6 48.8L69.7 50.6L69.8 52.6L69.8 54.6L69.8 56.5L69.7 58.5L69.4 60.4L69 62.1L68.4 63.8L67.5 65.2L66.5 66.5L65.2 67.5L63.8 68.4L62.1 69L60.4 69.4L58.5 69.7L56.5 69.8L54.6 69.8L52.6 69.8L50.6 69.7L48.8 69.6L47 69.6L45.3 69.7L43.7 70L42.3 70.4L41 71L39.8 71.8L38.7 72.9L37.7 74.1L36.8 75.5L35.9 77L35 78.7L34.1 80.4L33.2 82.2L32.2 83.9L31.1 85.5L30 87L28.7 88.3L27.3 89.4L25.9 90.2L24.3 90.8L22.7 91.1L21 91.1L19.3 90.8L17.6 90.3L15.8 89.6L14.1 88.7L12.3 87.8L10.6 86.7L9 85.7L7.4 84.7L5.9 83.8L4.4 83L2.9 82.5L1.4 82.1L0 82"/>
+            <path class="lk-ink"  d="M73 0L73.1 1.3L73.4 2.6L73.9 3.9L74.5 5.2L75.2 6.6L76 8L76.9 9.4L77.8 10.9L78.6 12.4L79.3 14L79.9 15.5L80.3 17.1L80.5 18.6L80.4 20.1L80.2 21.5L79.7 22.8L79 24.1L78 25.4L76.9 26.5L75.6 27.5L74.3 28.5L72.8 29.4L71.3 30.3L69.8 31.1L68.4 31.9L67.1 32.7L65.9 33.6L64.8 34.5L63.9 35.4L63.2 36.5L62.7 37.7L62.3 38.9L62 40.3L61.9 41.7L61.8 43.3L61.9 44.9L61.9 46.6L61.9 48.3L61.8 50.1L61.7 51.7L61.4 53.4L61 54.9L60.4 56.3L59.6 57.6L58.7 58.7L57.6 59.6L56.3 60.4L54.9 61L53.4 61.4L51.7 61.7L50.1 61.8L48.3 61.9L46.6 61.9L44.9 61.9L43.3 61.8L41.7 61.9L40.3 62L38.9 62.3L37.7 62.7L36.5 63.2L35.4 63.9L34.5 64.8L33.6 65.9L32.7 67.1L31.9 68.4L31.1 69.8L30.3 71.3L29.4 72.8L28.5 74.3L27.5 75.6L26.5 76.9L25.4 78L24.1 79L22.8 79.7L21.5 80.2L20.1 80.4L18.6 80.5L17.1 80.3L15.5 79.9L14 79.3L12.4 78.6L10.9 77.8L9.4 76.9L8 76L6.6 75.2L5.2 74.5L3.9 73.9L2.6 73.4L1.3 73.1L0 73"/>
+            <circle class="lk-dot" cx="80.2" cy="7" r="1.05"/>
+            <circle class="lk-dot" cx="85" cy="22.8" r="1.05"/>
+            <circle class="lk-dot" cx="73" cy="34" r="1.05"/>
+            <circle class="lk-dot" cx="66" cy="46.2" r="1.05"/>
+            <circle class="lk-dot" cx="62.2" cy="62.2" r="1.05"/>
+            <circle class="lk-dot" cx="46.2" cy="66" r="1.05"/>
+            <circle class="lk-dot" cx="34" cy="73" r="1.05"/>
+            <circle class="lk-dot" cx="22.8" cy="85" r="1.05"/>
+            <circle class="lk-dot" cx="7" cy="80.2" r="1.05"/>
+            <use href="#flw" class="clay" transform="translate(60.9 16.3) rotate(15) scale(.56)"/>
+            <use href="#flw" class="clay" transform="translate(44.5 44.5) rotate(45) scale(.56)"/>
+            <use href="#flw" class="clay" transform="translate(16.3 60.9) rotate(75) scale(.56)"/>
+            <use href="#lfC" class="moss" transform="translate(45 26) rotate(30) scale(.9)"/>
+            <use href="#lfC" class="moss" transform="translate(26 45) rotate(60) scale(.9)"/>
+            <path class="lk-clay" d="M50 0A50 50 0 0 1 0 50"/>
+            <path class="lk-ink"  d="M45 0A45 45 0 0 1 0 45"/>
+            <use href="#lfB" class="ink" transform="translate(8.8 1.8) rotate(11.25) scale(1.12)"/>
+            <use href="#lfB" class="ink" transform="translate(7.5 5) rotate(33.75) scale(1.12)"/>
+            <use href="#lfB" class="ink" transform="translate(5 7.5) rotate(56.25) scale(1.12)"/>
+            <use href="#lfB" class="ink" transform="translate(1.8 8.8) rotate(78.75) scale(1.12)"/>
+            <path class="lk-clay" d="M9 0A9 9 0 0 1 0 9"/>
+          </svg>
+          <svg class="lachak tr" viewBox="0 0 100 100" aria-hidden="true" focusable="false">
+            <path class="lk-clay" d="M82 0L82.1 1.4L82.5 2.9L83 4.4L83.8 5.9L84.7 7.4L85.7 9L86.7 10.6L87.8 12.3L88.7 14.1L89.6 15.8L90.3 17.6L90.8 19.3L91.1 21L91.1 22.7L90.8 24.3L90.2 25.9L89.4 27.3L88.3 28.7L87 30L85.5 31.1L83.9 32.2L82.2 33.2L80.4 34.1L78.7 35L77 35.9L75.5 36.8L74.1 37.7L72.9 38.7L71.8 39.8L71 41L70.4 42.3L70 43.7L69.7 45.3L69.6 47L69.6 48.8L69.7 50.6L69.8 52.6L69.8 54.6L69.8 56.5L69.7 58.5L69.4 60.4L69 62.1L68.4 63.8L67.5 65.2L66.5 66.5L65.2 67.5L63.8 68.4L62.1 69L60.4 69.4L58.5 69.7L56.5 69.8L54.6 69.8L52.6 69.8L50.6 69.7L48.8 69.6L47 69.6L45.3 69.7L43.7 70L42.3 70.4L41 71L39.8 71.8L38.7 72.9L37.7 74.1L36.8 75.5L35.9 77L35 78.7L34.1 80.4L33.2 82.2L32.2 83.9L31.1 85.5L30 87L28.7 88.3L27.3 89.4L25.9 90.2L24.3 90.8L22.7 91.1L21 91.1L19.3 90.8L17.6 90.3L15.8 89.6L14.1 88.7L12.3 87.8L10.6 86.7L9 85.7L7.4 84.7L5.9 83.8L4.4 83L2.9 82.5L1.4 82.1L0 82"/>
+            <path class="lk-ink"  d="M73 0L73.1 1.3L73.4 2.6L73.9 3.9L74.5 5.2L75.2 6.6L76 8L76.9 9.4L77.8 10.9L78.6 12.4L79.3 14L79.9 15.5L80.3 17.1L80.5 18.6L80.4 20.1L80.2 21.5L79.7 22.8L79 24.1L78 25.4L76.9 26.5L75.6 27.5L74.3 28.5L72.8 29.4L71.3 30.3L69.8 31.1L68.4 31.9L67.1 32.7L65.9 33.6L64.8 34.5L63.9 35.4L63.2 36.5L62.7 37.7L62.3 38.9L62 40.3L61.9 41.7L61.8 43.3L61.9 44.9L61.9 46.6L61.9 48.3L61.8 50.1L61.7 51.7L61.4 53.4L61 54.9L60.4 56.3L59.6 57.6L58.7 58.7L57.6 59.6L56.3 60.4L54.9 61L53.4 61.4L51.7 61.7L50.1 61.8L48.3 61.9L46.6 61.9L44.9 61.9L43.3 61.8L41.7 61.9L40.3 62L38.9 62.3L37.7 62.7L36.5 63.2L35.4 63.9L34.5 64.8L33.6 65.9L32.7 67.1L31.9 68.4L31.1 69.8L30.3 71.3L29.4 72.8L28.5 74.3L27.5 75.6L26.5 76.9L25.4 78L24.1 79L22.8 79.7L21.5 80.2L20.1 80.4L18.6 80.5L17.1 80.3L15.5 79.9L14 79.3L12.4 78.6L10.9 77.8L9.4 76.9L8 76L6.6 75.2L5.2 74.5L3.9 73.9L2.6 73.4L1.3 73.1L0 73"/>
+            <circle class="lk-dot" cx="80.2" cy="7" r="1.05"/>
+            <circle class="lk-dot" cx="85" cy="22.8" r="1.05"/>
+            <circle class="lk-dot" cx="73" cy="34" r="1.05"/>
+            <circle class="lk-dot" cx="66" cy="46.2" r="1.05"/>
+            <circle class="lk-dot" cx="62.2" cy="62.2" r="1.05"/>
+            <circle class="lk-dot" cx="46.2" cy="66" r="1.05"/>
+            <circle class="lk-dot" cx="34" cy="73" r="1.05"/>
+            <circle class="lk-dot" cx="22.8" cy="85" r="1.05"/>
+            <circle class="lk-dot" cx="7" cy="80.2" r="1.05"/>
+            <use href="#flw" class="clay" transform="translate(60.9 16.3) rotate(15) scale(.56)"/>
+            <use href="#flw" class="clay" transform="translate(44.5 44.5) rotate(45) scale(.56)"/>
+            <use href="#flw" class="clay" transform="translate(16.3 60.9) rotate(75) scale(.56)"/>
+            <use href="#lfC" class="moss" transform="translate(45 26) rotate(30) scale(.9)"/>
+            <use href="#lfC" class="moss" transform="translate(26 45) rotate(60) scale(.9)"/>
+            <path class="lk-clay" d="M50 0A50 50 0 0 1 0 50"/>
+            <path class="lk-ink"  d="M45 0A45 45 0 0 1 0 45"/>
+            <use href="#lfB" class="ink" transform="translate(8.8 1.8) rotate(11.25) scale(1.12)"/>
+            <use href="#lfB" class="ink" transform="translate(7.5 5) rotate(33.75) scale(1.12)"/>
+            <use href="#lfB" class="ink" transform="translate(5 7.5) rotate(56.25) scale(1.12)"/>
+            <use href="#lfB" class="ink" transform="translate(1.8 8.8) rotate(78.75) scale(1.12)"/>
+            <path class="lk-clay" d="M9 0A9 9 0 0 1 0 9"/>
+          </svg>
+          <svg class="lachak bl" viewBox="0 0 100 100" aria-hidden="true" focusable="false">
+            <path class="lk-clay" d="M82 0L82.1 1.4L82.5 2.9L83 4.4L83.8 5.9L84.7 7.4L85.7 9L86.7 10.6L87.8 12.3L88.7 14.1L89.6 15.8L90.3 17.6L90.8 19.3L91.1 21L91.1 22.7L90.8 24.3L90.2 25.9L89.4 27.3L88.3 28.7L87 30L85.5 31.1L83.9 32.2L82.2 33.2L80.4 34.1L78.7 35L77 35.9L75.5 36.8L74.1 37.7L72.9 38.7L71.8 39.8L71 41L70.4 42.3L70 43.7L69.7 45.3L69.6 47L69.6 48.8L69.7 50.6L69.8 52.6L69.8 54.6L69.8 56.5L69.7 58.5L69.4 60.4L69 62.1L68.4 63.8L67.5 65.2L66.5 66.5L65.2 67.5L63.8 68.4L62.1 69L60.4 69.4L58.5 69.7L56.5 69.8L54.6 69.8L52.6 69.8L50.6 69.7L48.8 69.6L47 69.6L45.3 69.7L43.7 70L42.3 70.4L41 71L39.8 71.8L38.7 72.9L37.7 74.1L36.8 75.5L35.9 77L35 78.7L34.1 80.4L33.2 82.2L32.2 83.9L31.1 85.5L30 87L28.7 88.3L27.3 89.4L25.9 90.2L24.3 90.8L22.7 91.1L21 91.1L19.3 90.8L17.6 90.3L15.8 89.6L14.1 88.7L12.3 87.8L10.6 86.7L9 85.7L7.4 84.7L5.9 83.8L4.4 83L2.9 82.5L1.4 82.1L0 82"/>
+            <path class="lk-ink"  d="M73 0L73.1 1.3L73.4 2.6L73.9 3.9L74.5 5.2L75.2 6.6L76 8L76.9 9.4L77.8 10.9L78.6 12.4L79.3 14L79.9 15.5L80.3 17.1L80.5 18.6L80.4 20.1L80.2 21.5L79.7 22.8L79 24.1L78 25.4L76.9 26.5L75.6 27.5L74.3 28.5L72.8 29.4L71.3 30.3L69.8 31.1L68.4 31.9L67.1 32.7L65.9 33.6L64.8 34.5L63.9 35.4L63.2 36.5L62.7 37.7L62.3 38.9L62 40.3L61.9 41.7L61.8 43.3L61.9 44.9L61.9 46.6L61.9 48.3L61.8 50.1L61.7 51.7L61.4 53.4L61 54.9L60.4 56.3L59.6 57.6L58.7 58.7L57.6 59.6L56.3 60.4L54.9 61L53.4 61.4L51.7 61.7L50.1 61.8L48.3 61.9L46.6 61.9L44.9 61.9L43.3 61.8L41.7 61.9L40.3 62L38.9 62.3L37.7 62.7L36.5 63.2L35.4 63.9L34.5 64.8L33.6 65.9L32.7 67.1L31.9 68.4L31.1 69.8L30.3 71.3L29.4 72.8L28.5 74.3L27.5 75.6L26.5 76.9L25.4 78L24.1 79L22.8 79.7L21.5 80.2L20.1 80.4L18.6 80.5L17.1 80.3L15.5 79.9L14 79.3L12.4 78.6L10.9 77.8L9.4 76.9L8 76L6.6 75.2L5.2 74.5L3.9 73.9L2.6 73.4L1.3 73.1L0 73"/>
+            <circle class="lk-dot" cx="80.2" cy="7" r="1.05"/>
+            <circle class="lk-dot" cx="85" cy="22.8" r="1.05"/>
+            <circle class="lk-dot" cx="73" cy="34" r="1.05"/>
+            <circle class="lk-dot" cx="66" cy="46.2" r="1.05"/>
+            <circle class="lk-dot" cx="62.2" cy="62.2" r="1.05"/>
+            <circle class="lk-dot" cx="46.2" cy="66" r="1.05"/>
+            <circle class="lk-dot" cx="34" cy="73" r="1.05"/>
+            <circle class="lk-dot" cx="22.8" cy="85" r="1.05"/>
+            <circle class="lk-dot" cx="7" cy="80.2" r="1.05"/>
+            <use href="#flw" class="clay" transform="translate(60.9 16.3) rotate(15) scale(.56)"/>
+            <use href="#flw" class="clay" transform="translate(44.5 44.5) rotate(45) scale(.56)"/>
+            <use href="#flw" class="clay" transform="translate(16.3 60.9) rotate(75) scale(.56)"/>
+            <use href="#lfC" class="moss" transform="translate(45 26) rotate(30) scale(.9)"/>
+            <use href="#lfC" class="moss" transform="translate(26 45) rotate(60) scale(.9)"/>
+            <path class="lk-clay" d="M50 0A50 50 0 0 1 0 50"/>
+            <path class="lk-ink"  d="M45 0A45 45 0 0 1 0 45"/>
+            <use href="#lfB" class="ink" transform="translate(8.8 1.8) rotate(11.25) scale(1.12)"/>
+            <use href="#lfB" class="ink" transform="translate(7.5 5) rotate(33.75) scale(1.12)"/>
+            <use href="#lfB" class="ink" transform="translate(5 7.5) rotate(56.25) scale(1.12)"/>
+            <use href="#lfB" class="ink" transform="translate(1.8 8.8) rotate(78.75) scale(1.12)"/>
+            <path class="lk-clay" d="M9 0A9 9 0 0 1 0 9"/>
+          </svg>
+          <svg class="lachak br" viewBox="0 0 100 100" aria-hidden="true" focusable="false">
+            <path class="lk-clay" d="M82 0L82.1 1.4L82.5 2.9L83 4.4L83.8 5.9L84.7 7.4L85.7 9L86.7 10.6L87.8 12.3L88.7 14.1L89.6 15.8L90.3 17.6L90.8 19.3L91.1 21L91.1 22.7L90.8 24.3L90.2 25.9L89.4 27.3L88.3 28.7L87 30L85.5 31.1L83.9 32.2L82.2 33.2L80.4 34.1L78.7 35L77 35.9L75.5 36.8L74.1 37.7L72.9 38.7L71.8 39.8L71 41L70.4 42.3L70 43.7L69.7 45.3L69.6 47L69.6 48.8L69.7 50.6L69.8 52.6L69.8 54.6L69.8 56.5L69.7 58.5L69.4 60.4L69 62.1L68.4 63.8L67.5 65.2L66.5 66.5L65.2 67.5L63.8 68.4L62.1 69L60.4 69.4L58.5 69.7L56.5 69.8L54.6 69.8L52.6 69.8L50.6 69.7L48.8 69.6L47 69.6L45.3 69.7L43.7 70L42.3 70.4L41 71L39.8 71.8L38.7 72.9L37.7 74.1L36.8 75.5L35.9 77L35 78.7L34.1 80.4L33.2 82.2L32.2 83.9L31.1 85.5L30 87L28.7 88.3L27.3 89.4L25.9 90.2L24.3 90.8L22.7 91.1L21 91.1L19.3 90.8L17.6 90.3L15.8 89.6L14.1 88.7L12.3 87.8L10.6 86.7L9 85.7L7.4 84.7L5.9 83.8L4.4 83L2.9 82.5L1.4 82.1L0 82"/>
+            <path class="lk-ink"  d="M73 0L73.1 1.3L73.4 2.6L73.9 3.9L74.5 5.2L75.2 6.6L76 8L76.9 9.4L77.8 10.9L78.6 12.4L79.3 14L79.9 15.5L80.3 17.1L80.5 18.6L80.4 20.1L80.2 21.5L79.7 22.8L79 24.1L78 25.4L76.9 26.5L75.6 27.5L74.3 28.5L72.8 29.4L71.3 30.3L69.8 31.1L68.4 31.9L67.1 32.7L65.9 33.6L64.8 34.5L63.9 35.4L63.2 36.5L62.7 37.7L62.3 38.9L62 40.3L61.9 41.7L61.8 43.3L61.9 44.9L61.9 46.6L61.9 48.3L61.8 50.1L61.7 51.7L61.4 53.4L61 54.9L60.4 56.3L59.6 57.6L58.7 58.7L57.6 59.6L56.3 60.4L54.9 61L53.4 61.4L51.7 61.7L50.1 61.8L48.3 61.9L46.6 61.9L44.9 61.9L43.3 61.8L41.7 61.9L40.3 62L38.9 62.3L37.7 62.7L36.5 63.2L35.4 63.9L34.5 64.8L33.6 65.9L32.7 67.1L31.9 68.4L31.1 69.8L30.3 71.3L29.4 72.8L28.5 74.3L27.5 75.6L26.5 76.9L25.4 78L24.1 79L22.8 79.7L21.5 80.2L20.1 80.4L18.6 80.5L17.1 80.3L15.5 79.9L14 79.3L12.4 78.6L10.9 77.8L9.4 76.9L8 76L6.6 75.2L5.2 74.5L3.9 73.9L2.6 73.4L1.3 73.1L0 73"/>
+            <circle class="lk-dot" cx="80.2" cy="7" r="1.05"/>
+            <circle class="lk-dot" cx="85" cy="22.8" r="1.05"/>
+            <circle class="lk-dot" cx="73" cy="34" r="1.05"/>
+            <circle class="lk-dot" cx="66" cy="46.2" r="1.05"/>
+            <circle class="lk-dot" cx="62.2" cy="62.2" r="1.05"/>
+            <circle class="lk-dot" cx="46.2" cy="66" r="1.05"/>
+            <circle class="lk-dot" cx="34" cy="73" r="1.05"/>
+            <circle class="lk-dot" cx="22.8" cy="85" r="1.05"/>
+            <circle class="lk-dot" cx="7" cy="80.2" r="1.05"/>
+            <use href="#flw" class="clay" transform="translate(60.9 16.3) rotate(15) scale(.56)"/>
+            <use href="#flw" class="clay" transform="translate(44.5 44.5) rotate(45) scale(.56)"/>
+            <use href="#flw" class="clay" transform="translate(16.3 60.9) rotate(75) scale(.56)"/>
+            <use href="#lfC" class="moss" transform="translate(45 26) rotate(30) scale(.9)"/>
+            <use href="#lfC" class="moss" transform="translate(26 45) rotate(60) scale(.9)"/>
+            <path class="lk-clay" d="M50 0A50 50 0 0 1 0 50"/>
+            <path class="lk-ink"  d="M45 0A45 45 0 0 1 0 45"/>
+            <use href="#lfB" class="ink" transform="translate(8.8 1.8) rotate(11.25) scale(1.12)"/>
+            <use href="#lfB" class="ink" transform="translate(7.5 5) rotate(33.75) scale(1.12)"/>
+            <use href="#lfB" class="ink" transform="translate(5 7.5) rotate(56.25) scale(1.12)"/>
+            <use href="#lfB" class="ink" transform="translate(1.8 8.8) rotate(78.75) scale(1.12)"/>
+            <path class="lk-clay" d="M9 0A9 9 0 0 1 0 9"/>
+          </svg>
+
+          <div class="cover">
+
+            <div class="mehrab">
+              <!-- behind: sunburst, vines, the arch's paper panel -->
+              <svg class="art" viewBox="0 0 100 178" aria-hidden="true" focusable="false">
+                  <path class="ha-ray" d="M-12 50L-25 50M-11.5 42.5L-19.5 41.6M-10.2 35.2L-22.8 32.1M-8 28L-15.5 25.2M-4.9 21.2L-16.4 15.1M-1 14.8L-7.6 10.2M3.6 8.9L-6.1 0.3M8.9 3.6L3.6 -2.4M14.8 -1L7.4 -11.7M21.2 -4.9L17.5 -12M28 -8L23.4 -20.1M35.2 -10.2L33.2 -18M42.5 -11.5L41 -24.5M50 -12L50 -20M57.5 -11.5L59 -24.5M64.8 -10.2L66.8 -18M72 -8L76.6 -20.1M78.8 -4.9L82.5 -12M85.2 -1L92.6 -11.7M91.1 3.6L96.4 -2.4M96.4 8.9L106.1 0.3M101 14.8L107.6 10.2M104.9 21.2L116.4 15.1M108 28L115.5 25.2M110.2 35.2L122.8 32.1M111.5 42.5L119.5 41.6M112 50L125 50"/>
+                  <path class="ha-ring" d="M-8 50A58 58 0 0 1 108 50"/>
+                  <path class="ha-ring2" d="M-31 50A81 81 0 0 1 131 50"/>
+                  <use href="#star" class="spark" transform="translate(50 -27) scale(.42)"/>
+                  <use href="#star" class="spark" transform="translate(13 -6) scale(.26)"/>
+                  <use href="#star" class="spark" transform="translate(87 -6) scale(.26)"/>
+                <g>
+                  <path class="stem" d="M3 177C-12 150 -22 114 -17 76"/>
+                  <use href="#lfA" class="ink" transform="translate(-2.2 166.9) rotate(-169.2) scale(0.300)"/>
+                  <use href="#lfA" class="moss" transform="translate(-6.3 157.4) rotate(-57.7) scale(0.281)"/>
+                  <use href="#lfB" class="clay" transform="translate(-9.9 147.3) rotate(-162.2) scale(0.367)"/>
+                  <use href="#lfB" class="ink" transform="translate(-13 136.9) rotate(-50.5) scale(0.341)"/>
+                  <use href="#lfB" class="moss" transform="translate(-15.5 126) rotate(-154.7) scale(0.315)"/>
+                  <use href="#lfB" class="clay" transform="translate(-17.2 114.7) rotate(-42.8) scale(0.289)"/>
+                  <use href="#lfB" class="ink" transform="translate(-18.1 103.2) rotate(-146.6) scale(0.263)"/>
+                  <use href="#lfC" class="moss" transform="translate(-18.2 91.4) rotate(-34.3) scale(0.337)"/>
+                  <use href="#lfC" class="clay" transform="translate(-17.4 79.4) rotate(-137.8) scale(0.300)"/>
+                  <path class="stem" d="M3 177C-17 171 -28 154 -31 130"/>
+                  <use href="#lfA" class="moss" transform="translate(-3.8 174.4) rotate(-208.3) scale(0.240)"/>
+                  <use href="#lfA" class="clay" transform="translate(-12.2 169.1) rotate(-87) scale(0.216)"/>
+                  <use href="#lfB" class="ink" transform="translate(-19 162.1) rotate(-182) scale(0.269)"/>
+                  <use href="#lfB" class="moss" transform="translate(-24.3 153.6) rotate(-62.4) scale(0.235)"/>
+                  <use href="#lfC" class="clay" transform="translate(-28.2 143.5) rotate(-160.5) scale(0.288)"/>
+                  <use href="#lfC" class="ink" transform="translate(-30.7 132.1) rotate(-44.4) scale(0.240)"/>
+                  <use href="#flw" class="clay" transform="translate(-16.5 72) scale(.66)"/>
+                  <circle class="dot" cx="-16.5" cy="72" r="1.15"/>
+                  <use href="#flw" class="moss" transform="translate(-31 126) scale(.52)"/>
+                  <circle class="dot" cx="-31" cy="126" r=".95"/>
+                </g>
+                <g transform="translate(100 0) scale(-1 1)">
+                  <path class="stem" d="M3 177C-12 150 -22 114 -17 76"/>
+                  <use href="#lfA" class="ink" transform="translate(-2.2 166.9) rotate(-169.2) scale(0.300)"/>
+                  <use href="#lfA" class="moss" transform="translate(-6.3 157.4) rotate(-57.7) scale(0.281)"/>
+                  <use href="#lfB" class="clay" transform="translate(-9.9 147.3) rotate(-162.2) scale(0.367)"/>
+                  <use href="#lfB" class="ink" transform="translate(-13 136.9) rotate(-50.5) scale(0.341)"/>
+                  <use href="#lfB" class="moss" transform="translate(-15.5 126) rotate(-154.7) scale(0.315)"/>
+                  <use href="#lfB" class="clay" transform="translate(-17.2 114.7) rotate(-42.8) scale(0.289)"/>
+                  <use href="#lfB" class="ink" transform="translate(-18.1 103.2) rotate(-146.6) scale(0.263)"/>
+                  <use href="#lfC" class="moss" transform="translate(-18.2 91.4) rotate(-34.3) scale(0.337)"/>
+                  <use href="#lfC" class="clay" transform="translate(-17.4 79.4) rotate(-137.8) scale(0.300)"/>
+                  <path class="stem" d="M3 177C-17 171 -28 154 -31 130"/>
+                  <use href="#lfA" class="moss" transform="translate(-3.8 174.4) rotate(-208.3) scale(0.240)"/>
+                  <use href="#lfA" class="clay" transform="translate(-12.2 169.1) rotate(-87) scale(0.216)"/>
+                  <use href="#lfB" class="ink" transform="translate(-19 162.1) rotate(-182) scale(0.269)"/>
+                  <use href="#lfB" class="moss" transform="translate(-24.3 153.6) rotate(-62.4) scale(0.235)"/>
+                  <use href="#lfC" class="clay" transform="translate(-28.2 143.5) rotate(-160.5) scale(0.288)"/>
+                  <use href="#lfC" class="ink" transform="translate(-30.7 132.1) rotate(-44.4) scale(0.240)"/>
+                  <use href="#flw" class="clay" transform="translate(-16.5 72) scale(.66)"/>
+                  <circle class="dot" cx="-16.5" cy="72" r="1.15"/>
+                  <use href="#flw" class="moss" transform="translate(-31 126) scale(.52)"/>
+                  <circle class="dot" cx="-31" cy="126" r=".95"/>
+                </g>
+                <path class="panel" d="M2 177.5L2 48C2 26 28 12 50 2 72 12 98 26 98 48L98 177.5Z"/>
+              </svg>
+
+              <img src="assets/hero.png" alt="غزل و علی" fetchpriority="high" decoding="async">
+
+              <!-- in front: the arch rules, rosette and finial -->
+              <svg class="line" viewBox="0 0 100 178" aria-hidden="true" focusable="false">
+                <path class="ar-out" d="M2 177.5L2 48C2 26 28 12 50 2 72 12 98 26 98 48L98 177.5Z"/>
+                <path class="ar-in"  d="M4.8 175L4.8 49C4.8 28.6 29.4 15.6 50 6.4 70.6 15.6 95.2 28.6 95.2 49L95.2 175Z"/>
+                <rect class="ar-in" x="8" y="54" width="84" height="119.3"/>
+                <path class="fin" d="M50 2L50-3.5M50-3.5C47.6-6.2 47.6-9.6 50-12.6 52.4-9.6 52.4-6.2 50-3.5Z M50-12.6L50-16"/>
+                <g transform="translate(50 21) scale(.42)">
+                  <use href="#lfC" class="clay" transform="rotate(-90) translate(3.2 0) scale(.62)"/>
+                  <use href="#lfC" class="clay" transform="rotate(-45) translate(3.2 0) scale(.62)"/>
+                  <use href="#lfC" class="clay" transform="rotate(0) translate(3.2 0) scale(.62)"/>
+                  <use href="#lfC" class="clay" transform="rotate(45) translate(3.2 0) scale(.62)"/>
+                  <use href="#lfC" class="clay" transform="rotate(90) translate(3.2 0) scale(.62)"/>
+                  <use href="#lfC" class="clay" transform="rotate(135) translate(3.2 0) scale(.62)"/>
+                  <use href="#lfC" class="clay" transform="rotate(180) translate(3.2 0) scale(.62)"/>
+                  <use href="#lfC" class="clay" transform="rotate(225) translate(3.2 0) scale(.62)"/>
+                  <circle class="ro-ink" r="2.4"/>
+                  <circle class="ro-ink" r="16"/>
+                  <circle class="ro-dot" cx="18.6" cy="0" r=".75"/>
+                  <circle class="ro-dot" cx="17.2" cy="7.1" r=".75"/>
+                  <circle class="ro-dot" cx="13.2" cy="13.2" r=".75"/>
+                  <circle class="ro-dot" cx="7.1" cy="17.2" r=".75"/>
+                  <circle class="ro-dot" cx="0" cy="18.6" r=".75"/>
+                  <circle class="ro-dot" cx="-7.1" cy="17.2" r=".75"/>
+                  <circle class="ro-dot" cx="-13.2" cy="13.2" r=".75"/>
+                  <circle class="ro-dot" cx="-17.2" cy="7.1" r=".75"/>
+                  <circle class="ro-dot" cx="-18.6" cy="0" r=".75"/>
+                  <circle class="ro-dot" cx="-17.2" cy="-7.1" r=".75"/>
+                  <circle class="ro-dot" cx="-13.2" cy="-13.2" r=".75"/>
+                  <circle class="ro-dot" cx="-7.1" cy="-17.2" r=".75"/>
+                  <circle class="ro-dot" cx="0" cy="-18.6" r=".75"/>
+                  <circle class="ro-dot" cx="7.1" cy="-17.2" r=".75"/>
+                  <circle class="ro-dot" cx="13.2" cy="-13.2" r=".75"/>
+                  <circle class="ro-dot" cx="17.2" cy="-7.1" r=".75"/>
+                </g>
+              </svg>
+
+              <p class="tymp nq">جشن عقد</p>
+            </div>
+
+            <div class="cover-title">
+              <p class="who nq">غزل عابدی</p>
+              <p class="and nq">و</p>
+              <p class="who nq">علی گرامی‌زاده</p>
+              <p class="date nq">۶ آبان ۱۴۰۵</p>
+            </div>
+          </div>
+
+          <div class="hint" id="hint" aria-hidden="true"><i></i></div>
+        </div>
+
+        <!-- ─────────  BACK  ───────── -->
+        <div class="face face--back">
+
+          <svg class="back-decor a" viewBox="0 0 120 120" aria-hidden="true" focusable="false">
+            <path class="stem" d="M4 4C34 14 50 32 56 58"/>
+            <use href="#lfA" class="ink" transform="translate(12.6 7.2) rotate(-30.9) scale(0.234)"/>
+            <use href="#lfA" class="moss" transform="translate(23.6 12.8) rotate(84.8) scale(0.214)"/>
+            <use href="#lfB" class="clay" transform="translate(32.9 19.4) rotate(-14.5) scale(0.273)"/>
+            <use href="#lfB" class="ink" transform="translate(40.7 26.9) rotate(102.9) scale(0.246)"/>
+            <use href="#lfB" class="moss" transform="translate(47 35.5) rotate(4.5) scale(0.218)"/>
+            <use href="#lfC" class="clay" transform="translate(51.9 45.1) rotate(121.5) scale(0.273)"/>
+            <use href="#lfC" class="ink" transform="translate(55.4 55.7) rotate(21.5) scale(0.234)"/>
+            <path class="stem" d="M4 4C26 6 44 10 62 14"/>
+            <use href="#lfA" class="moss" transform="translate(10.5 4.7) rotate(-47.6) scale(0.180)"/>
+            <use href="#lfA" class="clay" transform="translate(23.9 6.4) rotate(62.8) scale(0.158)"/>
+            <use href="#lfB" class="ink" transform="translate(36.5 8.6) rotate(-43.3) scale(0.189)"/>
+            <use href="#lfC" class="moss" transform="translate(48.6 11.1) rotate(66) scale(0.225)"/>
+            <use href="#lfC" class="clay" transform="translate(60.4 13.6) rotate(-41.5) scale(0.180)"/>
+            <use href="#flw" class="clay" transform="translate(64 16) scale(0.44)"/>
+            <circle class="dot" cx="64" cy="16" r="0.8"/>
+          </svg>
+
+          <svg class="back-decor b" viewBox="0 0 120 120" aria-hidden="true" focusable="false">
+            <path class="stem" d="M116 116C86 106 70 88 64 62"/>
+            <use href="#lfA" class="ink" transform="translate(107.4 112.8) rotate(-210.9) scale(0.234)"/>
+            <use href="#lfA" class="clay" transform="translate(96.4 107.2) rotate(-95.2) scale(0.214)"/>
+            <use href="#lfB" class="moss" transform="translate(87.1 100.6) rotate(-194.5) scale(0.273)"/>
+            <use href="#lfB" class="ink" transform="translate(79.3 93.1) rotate(-77.1) scale(0.246)"/>
+            <use href="#lfB" class="clay" transform="translate(73 84.5) rotate(-175.5) scale(0.218)"/>
+            <use href="#lfC" class="moss" transform="translate(68.1 74.9) rotate(-58.5) scale(0.273)"/>
+            <use href="#lfC" class="ink" transform="translate(64.6 64.3) rotate(-158.5) scale(0.234)"/>
+            <path class="stem" d="M116 116C94 114 76 110 58 106"/>
+            <use href="#lfA" class="ink" transform="translate(109.5 115.3) rotate(-227.6) scale(0.180)"/>
+            <use href="#lfA" class="moss" transform="translate(96.1 113.6) rotate(-117.2) scale(0.158)"/>
+            <use href="#lfB" class="clay" transform="translate(83.5 111.4) rotate(-223.3) scale(0.189)"/>
+            <use href="#lfC" class="ink" transform="translate(71.4 108.9) rotate(-114) scale(0.225)"/>
+            <use href="#lfC" class="moss" transform="translate(59.6 106.4) rotate(-221.5) scale(0.180)"/>
+            <use href="#flw" class="moss" transform="translate(56 104) scale(0.44)"/>
+            <circle class="dot" cx="56" cy="104" r="0.8"/>
+          </svg>
+
+          <div class="back-inner">
+
+            <figure class="polaroid">
+              <img src="assets/polaroid.jpg" alt="غزل و علی در کودکی" decoding="async">
+            </figure>
+
+            <p class="k">با کمال افتخار<br>شما را به جشن عقد خود دعوت می‌کنیم</p>
+
+            <p class="back-names-fa">غزل عابدی<span class="and">و</span>علی گرامی‌زاده</p>
+            <p class="back-names">Qazal Abedi &amp; Ali Geramizadeh</p>
+
+            <span class="hair"></span>
+
+            <p class="when">چهارشنبه ۶ آبان ۱۴۰۵<br>ساعت ۷ تا ۱۱ شب</p>
+
+            <p class="where">قم، بلوار الغدیر، الغدیر&nbsp;۳۹<br><b>عمارت ملل</b></p>
+
+            <div class="links">
+              <a class="btn" href="https://maps.app.goo.gl/4C1scjon73sp1jS68?g_st=it" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                گوگل مپ
+              </a>
+              <a class="btn" href="https://nshn.ir/f37bsxT6GxsVXk" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 7 6-3 6 3 6-3v13l-6 3-6-3-6 3V7Z"/><path d="M9 4v13M15 7v13"/></svg>
+                نشان
+              </a>
+            </div>
+
+            <span class="hair"></span>
+
+            <p class="rsvp">چنانچه افتخار میزبانی شما را نداریم<br>لطفاً ما را مطلع فرمایید.</p>
+
+          </div>
+        </div>
+
+      </article>
+    </div>
+  </div>
+</section>
+
+<div class="gate" id="gate">
+  <button class="seal" id="seal" type="button" aria-label="باز کردن دعوت‌نامه">
+    <span class="seal-disc" aria-hidden="true">
+      <svg viewBox="0 0 100 100" focusable="false">
+        <circle class="sl-glow" cx="50" cy="50" r="48"/>
+        <circle class="sl-face" cx="50" cy="50" r="48"/>
+        <circle class="sl-ring" cx="50" cy="50" r="40"/>
+        <circle class="sl-dot" cx="94" cy="50" r=".9"/>
+          <circle class="sl-dot" cx="92.9" cy="59.8" r=".9"/>
+          <circle class="sl-dot" cx="89.6" cy="69.1" r=".9"/>
+          <circle class="sl-dot" cx="84.4" cy="77.4" r=".9"/>
+          <circle class="sl-dot" cx="77.4" cy="84.4" r=".9"/>
+          <circle class="sl-dot" cx="69.1" cy="89.6" r=".9"/>
+          <circle class="sl-dot" cx="59.8" cy="92.9" r=".9"/>
+          <circle class="sl-dot" cx="50" cy="94" r=".9"/>
+          <circle class="sl-dot" cx="40.2" cy="92.9" r=".9"/>
+          <circle class="sl-dot" cx="30.9" cy="89.6" r=".9"/>
+          <circle class="sl-dot" cx="22.6" cy="84.4" r=".9"/>
+          <circle class="sl-dot" cx="15.6" cy="77.4" r=".9"/>
+          <circle class="sl-dot" cx="10.4" cy="69.1" r=".9"/>
+          <circle class="sl-dot" cx="7.1" cy="59.8" r=".9"/>
+          <circle class="sl-dot" cx="6" cy="50" r=".9"/>
+          <circle class="sl-dot" cx="7.1" cy="40.2" r=".9"/>
+          <circle class="sl-dot" cx="10.4" cy="30.9" r=".9"/>
+          <circle class="sl-dot" cx="15.6" cy="22.6" r=".9"/>
+          <circle class="sl-dot" cx="22.6" cy="15.6" r=".9"/>
+          <circle class="sl-dot" cx="30.9" cy="10.4" r=".9"/>
+          <circle class="sl-dot" cx="40.2" cy="7.1" r=".9"/>
+          <circle class="sl-dot" cx="50" cy="6" r=".9"/>
+          <circle class="sl-dot" cx="59.8" cy="7.1" r=".9"/>
+          <circle class="sl-dot" cx="69.1" cy="10.4" r=".9"/>
+          <circle class="sl-dot" cx="77.4" cy="15.6" r=".9"/>
+          <circle class="sl-dot" cx="84.4" cy="22.6" r=".9"/>
+          <circle class="sl-dot" cx="89.6" cy="30.9" r=".9"/>
+          <circle class="sl-dot" cx="92.9" cy="40.2" r=".9"/>
+      </svg>
+      <span class="seal-mono">غ ع</span>
+    </span>
+    <span class="seal-label">باز کردن دعوت‌نامه</span>
+    <span class="seal-sub">همراه با موسیقی</span>
+  </button>
+</div>
+
+<button class="snd" id="snd" type="button" aria-label="پخش موسیقی" aria-pressed="false">
+  <span class="disc"><span class="bars" aria-hidden="true"><i></i><i></i><i></i><i></i></span></span>
+</button>
+<audio id="music" src="assets/music.m4a" preload="auto" loop playsinline></audio>
+
+<footer class="foot">
+  <div class="orn reveal"><span>✦</span></div>
+  <span class="sig reveal d1">غزل و علی</span>
+  <span class="lat reveal d2">28 . 10 . 2026</span>
+</footer>
+
+<script>
+(function(){
+  'use strict';
+
+  document.body.classList.remove('no-js');
+  document.documentElement.classList.add('gated');
+
+  var stage  = document.getElementById('stage');
+  var sticky = document.getElementById('sticky');
+  var card   = document.getElementById('card');
+  var hint   = document.getElementById('hint');
+
+  /* choreography, in stage-progress units (0 → 1) */
+  var SHRINK_FROM = 0.05, SHRINK_TO = 0.34;
+  var FLIP_FROM   = 0.40, FLIP_TO   = 0.70;
+  /* the remaining 0.30 holds the card still, so it can be read */
+
+  var RATIO = 1.7;      /* card height ÷ width */
+  var MAX_W = 430;
+
+  var vw = 0, vh = 0, cw = 0, ch = 0;
+  var last = -1;
+
+  function clamp(v){ return v < 0 ? 0 : v > 1 ? 1 : v }
+  function seg(p,a,b){ return clamp((p - a) / (b - a)) }
+  function easeInOut(t){ return t < 0.5 ? 4*t*t*t : 1 - Math.pow(-2*t + 2,3)/2 }
+  function lerp(a,b,t){ return a + (b - a) * t }
+
+  function measure(){
+    vw = sticky.clientWidth  || window.innerWidth;
+    vh = sticky.clientHeight || window.innerHeight;
+
+    /* biggest card that still breathes inside the viewport */
+    cw = Math.min(vw * 0.90, MAX_W, (vh * 0.88) / RATIO);
+    ch = cw * RATIO;
+
+    last = -1;
+    render();
+  }
+
+  function render(){
+    var rect  = stage.getBoundingClientRect();
+    var track = stage.offsetHeight - vh;
+    var p     = track > 0 ? clamp(-rect.top / track) : 0;
+
+    if (Math.abs(p - last) < 0.0004) return;
+    last = p;
+
+    var s = easeInOut(seg(p, SHRINK_FROM, SHRINK_TO));
+    var f = easeInOut(seg(p, FLIP_FROM, FLIP_TO));
+
+    var w = lerp(vw, cw, s);
+    var h = lerp(vh, ch, s);
+
+    card.style.width        = w + 'px';
+    card.style.height       = h + 'px';
+    card.style.borderRadius = lerp(0, 3, s) + 'px';
+    card.style.transform    = 'rotateY(' + (f * 180) + 'deg)';
+    card.style.setProperty('--cw', w + 'px');
+    /* the cover is laid out against whichever dimension is tighter,
+       so it stays composed at any viewport shape */
+    card.style.setProperty('--u', Math.min(w, h / RATIO) + 'px');
+
+    card.classList.toggle('is-card', s > 0.06);
+    if (hint) hint.style.opacity = String(1 - clamp(p / (SHRINK_FROM + 0.04)));
+  }
+
+  var ticking = false;
+  function onScroll(){
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(function(){ ticking = false; render() });
+  }
+
+  /* ── the invitation opens itself ────────────────────────────────
+     Not everyone will think to scroll, so after a short pause the
+     page walks itself through the shrink and the flip. Any real
+     input from the reader cancels it at once and hands back control. */
+  var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var autoRaf = null, autoTimer = null, autoDone = false;
+
+  function cancelAuto(){
+    autoDone = true;
+    if (autoTimer){ clearTimeout(autoTimer); autoTimer = null }
+    if (autoRaf){ cancelAnimationFrame(autoRaf); autoRaf = null }
+  }
+
+  function runAuto(){
+    if (autoDone) return;
+    var track = stage.offsetHeight - vh;
+    if (track <= 0) return;
+
+    var from = window.pageYOffset;
+    var to   = stage.offsetTop + track * 0.80;   /* flipped, settled, readable */
+    if (to <= from) return;
+
+    var DUR   = 5600;
+    var start = null;
+    var expected = from;
+
+    autoRaf = requestAnimationFrame(function step(now){
+      if (autoDone) return;
+      if (start === null) start = now;
+
+      /* the reader took over — stand down */
+      if (Math.abs(window.pageYOffset - expected) > 6){ cancelAuto(); return }
+
+      var t = clamp((now - start) / DUR);
+      var y = Math.round(lerp(from, to, easeInOut(t)));
+      expected = y;
+      window.scrollTo(0, y);
+
+      if (t < 1){ autoRaf = requestAnimationFrame(step) }
+      else { autoDone = true; autoRaf = null }
+    });
+  }
+
+  if (!reduced){
+    ['wheel','touchmove','keydown'].forEach(function(ev){
+      /* input on the seal is the guest opening the card, not taking over */
+      window.addEventListener(ev, function(e){
+        if (!autoDone && !(gate && gate.contains(e.target))) cancelAuto();
+      }, { passive:true });
+    });
+  }
+
+  window.addEventListener('scroll', onScroll, { passive:true });
+  window.addEventListener('resize', measure);
+  window.addEventListener('orientationchange', measure);
+  measure();
+
+  /* ── music ─────────────────────────────────────────────────────
+     Browsers refuse sound before the first gesture, so: try on load,
+     otherwise start on the first tap anywhere. The toggle mutes and
+     unmutes; a mute is remembered for the rest of the visit. */
+  var music = document.getElementById('music');
+  var snd   = document.getElementById('snd');
+  var VOL = 0.7, userMuted = false, resumeOnShow = false, fadeTimer = null;
+
+  function fade(to, ms, done){
+    clearInterval(fadeTimer);
+    var from = music.volume, steps = Math.max(1, Math.round(ms / 40)), i = 0;
+    fadeTimer = setInterval(function(){
+      i++;
+      music.volume = Math.min(1, Math.max(0, from + (to - from) * (i / steps)));
+      if (i >= steps){ clearInterval(fadeTimer); if (done) done() }
+    }, 40);
+  }
+  function setUi(on){
+    snd.classList.toggle('on', on);
+    snd.setAttribute('aria-pressed', on ? 'true' : 'false');
+    snd.setAttribute('aria-label', on ? 'قطع موسیقی' : 'پخش موسیقی');
+  }
+  function play(){
+    if (!music.paused){ setUi(true); fade(VOL, 600); return }
+    music.volume = 0;
+    var p = music.play();
+    if (p && p.then){
+      p.then(function(){ setUi(true); fade(VOL, 1800) }).catch(function(){});
+    } else { setUi(true); fade(VOL, 1800) }
+  }
+  function pause(){
+    setUi(false);
+    fade(0, 450, function(){ music.pause() });
+  }
+
+  snd.addEventListener('click', function(e){
+    e.stopPropagation();
+    if (music.paused || snd.className.indexOf('on') < 0){
+      userMuted = false; snd.classList.remove('muted'); play();
+    } else {
+      userMuted = true; snd.classList.add('muted'); pause();
+    }
+  });
+
+  /* first gesture anywhere wakes the music */
+  var GESTURES = ['pointerup','touchend','click','keydown'];
+  function onFirstGesture(e){
+    if (snd.contains(e.target)) return;          /* the toggle handles itself */
+    if (!userMuted && music.paused) play();
+    GESTURES.forEach(function(ev){ window.removeEventListener(ev, onFirstGesture, true) });
+  }
+  GESTURES.forEach(function(ev){ window.addEventListener(ev, onFirstGesture, true) });
+
+  /* quiet when the tab is hidden, back when it returns */
+  document.addEventListener('visibilitychange', function(){
+    if (document.hidden){
+      resumeOnShow = !music.paused;
+      if (resumeOnShow) music.pause();
+    } else if (resumeOnShow && !userMuted){
+      play();
+    }
+  });
+
+  play();   /* works where the browser allows autoplay; harmless otherwise */
+
+  /* the seal: one tap opens the invitation and, being a real gesture,
+     lets the music start straight away */
+  var gate = document.getElementById('gate');
+  var gateOpen = false;
+  function openGate(){
+    if (gateOpen) return;
+    gateOpen = true;
+    userMuted = false; snd.classList.remove('muted');
+    play();
+    gate.classList.add('open');
+    document.documentElement.classList.remove('gated');
+    if (!reduced) autoTimer = setTimeout(runAuto, 2600);
+  }
+  gate.addEventListener('click', openGate);
+
+  /* gentle reveal for the closing band */
+  var items = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target) }
+      });
+    }, { rootMargin:'0px 0px -10% 0px', threshold:0.2 });
+    for (var i = 0; i < items.length; i++) io.observe(items[i]);
+  } else {
+    for (var j = 0; j < items.length; j++) items[j].classList.add('in');
+  }
+})();
+</script>
+</body>
+</html>
