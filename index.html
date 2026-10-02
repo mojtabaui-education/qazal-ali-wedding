@@ -480,73 +480,24 @@ body::after{
 .snd.on .bars i:nth-child(4){ animation-delay:-.15s }
 @keyframes eq{ 0%,100%{ height:3px } 50%{ height:14px } }
 
+/* the little nudge shown until the music starts */
+.snd{ direction:ltr }                  /* disc hugs the corner, tip trails it */
+.snd .tip{
+  padding:6px 12px 7px;
+  border-radius:999px;
+  background:rgba(251,248,241,.92);
+  border:1px solid rgba(201,188,168,.7);
+  box-shadow:0 6px 18px -12px rgba(43,38,33,.45);
+  font-size:12px; line-height:1.4; white-space:nowrap;
+  direction:rtl;
+  color:var(--ink-soft);
+  transition:opacity .5s var(--ease), transform .5s var(--ease);
+}
+.snd.on .tip, .snd.muted .tip{ opacity:0; transform:translateX(-6px); pointer-events:none }
+
 @media (prefers-reduced-motion:reduce){
   .snd.on .bars i{ animation:none; height:9px }
 }
-
-/* ═══════════════════════  OPENING SEAL  ═══════════════════ */
-html.gated, html.gated body{ overflow:hidden }
-html.gated .snd{ opacity:0; pointer-events:none }
-.snd{ transition:opacity .8s var(--ease) }
-.gate{
-  position:fixed; inset:0; z-index:95;
-  display:flex; align-items:center; justify-content:center;
-  padding:24px;
-  /* opaque: the cover stays hidden until the seal is opened */
-  background:radial-gradient(70% 46% at 50% 44%,#FBF7EE 0%,#F2EBDF 55%,#E6DAC7 100%);
-  cursor:pointer;
-  transition:opacity 1s var(--ease), visibility 1s;
-}
-.gate.open{ opacity:0; visibility:hidden; pointer-events:none }
-/* the same double hairline frame as the card, so the seal feels part of it */
-.gate::before,.gate::after{
-  content:''; position:absolute; pointer-events:none;
-  inset:18px; border:1px solid rgba(162,91,60,.38);
-}
-.gate::after{ inset:24px; border-color:rgba(140,127,108,.26) }
-.seal{
-  display:flex; flex-direction:column; align-items:center; gap:14px;
-  padding:0; border:0; background:none; cursor:pointer;
-  font:inherit; color:var(--ink);
-  -webkit-tap-highlight-color:transparent;
-}
-.seal-disc{
-  position:relative;
-  width:124px; height:124px;
-  animation:breathe 3.4s ease-in-out infinite;
-  transition:transform .8s var(--ease);
-}
-.gate.open .seal-disc{ transform:scale(1.18); animation:none }
-.seal-disc svg{ position:absolute; inset:0; width:100%; height:100%; overflow:visible }
-.seal-disc .sl-face{ fill:#FBF8F1; stroke:#A25B3C; stroke-width:1.1; vector-effect:non-scaling-stroke }
-.seal-disc .sl-ring{ fill:none; stroke:#8A7C68; stroke-width:.75; opacity:.8; vector-effect:non-scaling-stroke }
-.seal-disc .sl-dot { fill:#B0663F; opacity:.7 }
-.seal-disc .sl-glow{ fill:none; stroke:#B0663F; stroke-width:.8; opacity:.35; vector-effect:non-scaling-stroke;
-  transform-origin:50px 50px; animation:ripple 3.4s ease-out infinite }
-.seal-mono{
-  position:absolute; inset:0;
-  display:grid; place-items:center;
-  font-family:'IranNastaliq','Gramophone',serif;
-  font-size:38px; line-height:1;
-  color:var(--accent);
-  padding-bottom:6px;
-}
-.seal-label{
-  font-family:'IranNastaliq','Gramophone',serif;
-  font-size:25px; line-height:1.5;
-  color:var(--ink);
-}
-.seal-sub{
-  margin-top:-10px;
-  font-size:12px; line-height:1.6;
-  color:var(--ink-soft);
-}
-@keyframes breathe{ 0%,100%{ transform:scale(1) } 50%{ transform:scale(1.035) } }
-@keyframes ripple { 0%{ transform:scale(1); opacity:.45 } 100%{ transform:scale(1.32); opacity:0 } }
-@media (prefers-reduced-motion:reduce){
-  .seal-disc, .seal-disc .sl-glow{ animation:none }
-}
-.no-js .gate{ display:none }
 
 /* ═════════════  fallbacks : no-js / reduced motion  ════════ */
 .no-js .stage{ height:auto }
@@ -912,51 +863,9 @@ html.gated .snd{ opacity:0; pointer-events:none }
   </div>
 </section>
 
-<div class="gate" id="gate">
-  <button class="seal" id="seal" type="button" aria-label="باز کردن دعوت‌نامه">
-    <span class="seal-disc" aria-hidden="true">
-      <svg viewBox="0 0 100 100" focusable="false">
-        <circle class="sl-glow" cx="50" cy="50" r="48"/>
-        <circle class="sl-face" cx="50" cy="50" r="48"/>
-        <circle class="sl-ring" cx="50" cy="50" r="40"/>
-        <circle class="sl-dot" cx="94" cy="50" r=".9"/>
-          <circle class="sl-dot" cx="92.9" cy="59.8" r=".9"/>
-          <circle class="sl-dot" cx="89.6" cy="69.1" r=".9"/>
-          <circle class="sl-dot" cx="84.4" cy="77.4" r=".9"/>
-          <circle class="sl-dot" cx="77.4" cy="84.4" r=".9"/>
-          <circle class="sl-dot" cx="69.1" cy="89.6" r=".9"/>
-          <circle class="sl-dot" cx="59.8" cy="92.9" r=".9"/>
-          <circle class="sl-dot" cx="50" cy="94" r=".9"/>
-          <circle class="sl-dot" cx="40.2" cy="92.9" r=".9"/>
-          <circle class="sl-dot" cx="30.9" cy="89.6" r=".9"/>
-          <circle class="sl-dot" cx="22.6" cy="84.4" r=".9"/>
-          <circle class="sl-dot" cx="15.6" cy="77.4" r=".9"/>
-          <circle class="sl-dot" cx="10.4" cy="69.1" r=".9"/>
-          <circle class="sl-dot" cx="7.1" cy="59.8" r=".9"/>
-          <circle class="sl-dot" cx="6" cy="50" r=".9"/>
-          <circle class="sl-dot" cx="7.1" cy="40.2" r=".9"/>
-          <circle class="sl-dot" cx="10.4" cy="30.9" r=".9"/>
-          <circle class="sl-dot" cx="15.6" cy="22.6" r=".9"/>
-          <circle class="sl-dot" cx="22.6" cy="15.6" r=".9"/>
-          <circle class="sl-dot" cx="30.9" cy="10.4" r=".9"/>
-          <circle class="sl-dot" cx="40.2" cy="7.1" r=".9"/>
-          <circle class="sl-dot" cx="50" cy="6" r=".9"/>
-          <circle class="sl-dot" cx="59.8" cy="7.1" r=".9"/>
-          <circle class="sl-dot" cx="69.1" cy="10.4" r=".9"/>
-          <circle class="sl-dot" cx="77.4" cy="15.6" r=".9"/>
-          <circle class="sl-dot" cx="84.4" cy="22.6" r=".9"/>
-          <circle class="sl-dot" cx="89.6" cy="30.9" r=".9"/>
-          <circle class="sl-dot" cx="92.9" cy="40.2" r=".9"/>
-      </svg>
-      <span class="seal-mono">غ ع</span>
-    </span>
-    <span class="seal-label">باز کردن دعوت‌نامه</span>
-    <span class="seal-sub">همراه با موسیقی</span>
-  </button>
-</div>
-
 <button class="snd" id="snd" type="button" aria-label="پخش موسیقی" aria-pressed="false">
   <span class="disc"><span class="bars" aria-hidden="true"><i></i><i></i><i></i><i></i></span></span>
+  <span class="tip">برای پخش موسیقی ضربه بزنید</span>
 </button>
 <audio id="music" src="assets/music.m4a" preload="auto" loop playsinline></audio>
 
@@ -971,7 +880,6 @@ html.gated .snd{ opacity:0; pointer-events:none }
   'use strict';
 
   document.body.classList.remove('no-js');
-  document.documentElement.classList.add('gated');
 
   var stage  = document.getElementById('stage');
   var sticky = document.getElementById('sticky');
@@ -1084,11 +992,9 @@ html.gated .snd{ opacity:0; pointer-events:none }
   }
 
   if (!reduced){
+    autoTimer = setTimeout(runAuto, 3800);
     ['wheel','touchmove','keydown'].forEach(function(ev){
-      /* input on the seal is the guest opening the card, not taking over */
-      window.addEventListener(ev, function(e){
-        if (!autoDone && !(gate && gate.contains(e.target))) cancelAuto();
-      }, { passive:true });
+      window.addEventListener(ev, cancelAuto, { passive:true, once:true });
     });
   }
 
@@ -1161,21 +1067,6 @@ html.gated .snd{ opacity:0; pointer-events:none }
   });
 
   play();   /* works where the browser allows autoplay; harmless otherwise */
-
-  /* the seal: one tap opens the invitation and, being a real gesture,
-     lets the music start straight away */
-  var gate = document.getElementById('gate');
-  var gateOpen = false;
-  function openGate(){
-    if (gateOpen) return;
-    gateOpen = true;
-    userMuted = false; snd.classList.remove('muted');
-    play();
-    gate.classList.add('open');
-    document.documentElement.classList.remove('gated');
-    if (!reduced) autoTimer = setTimeout(runAuto, 2600);
-  }
-  gate.addEventListener('click', openGate);
 
   /* gentle reveal for the closing band */
   var items = document.querySelectorAll('.reveal');
